@@ -10,26 +10,27 @@ import {
   SupportButton,
 } from '@backstage/core';
 import { ExampleFetchComponent } from '../ExampleFetchComponent';
+import { UpdateProfile } from '../UpdateProfile';
+import { Route, Routes } from 'react-router-dom';
 
-export const ExampleComponent = () => (
+export const ExampleComponent = () => {
+  // let history = useLocation(); 
+  // const navigate = useNavigate();
+  let to = 'timeline';
+  const isFirstTimeLogin = false;
+  if(isFirstTimeLogin) {
+    to = 'updateProfile';
+  }
+  // history.
+  // navigate(to, { replace: false  })
+  return (
   <Page themeId="tool">
-    <Header title="Welcome to plugin1!" subtitle="Optional subtitle" />
-    <Content>
-      <ContentHeader title="Plugin title">
-        <SupportButton>A description of your plugin goes here.</SupportButton>
-      </ContentHeader>
-      <Grid container spacing={3} direction="column">
-        <Grid item>
-          <InfoCard title="Information card">
-            <Typography variant="body1">
-              All content should be wrapped in a card like this.
-            </Typography>
-          </InfoCard>
-        </Grid>
-        <Grid item>
-          <ExampleFetchComponent />
-        </Grid>
-      </Grid>
-    </Content>
+    <Header title="Developer Community!" />
+    <Routes>
+      <Route path="/" />
+      <Route path="/timeline" />
+      <Route path="/updateProfile" element={<UpdateProfile />} />
+    </Routes>
   </Page>
 );
+}
